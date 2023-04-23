@@ -23,6 +23,7 @@ def pascal_triangle(n):
             if j == 0 or j == i:
                 tmp_list.append(1)
             else:
-                tmp_list.append(pas_triangle[i - 1][j - 1] + pas_triangle[i - 1][j])
+                tmp_list.append(pas_triangle[i - 1][j - 1]
+                                + pas_triangle[i - 1][j])
         pas_triangle.append(tmp_list)
     return pas_triangle
