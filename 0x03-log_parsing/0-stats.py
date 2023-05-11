@@ -24,6 +24,8 @@ if __name__ == "__main__":
         for line in sys.stdin:
             split_string = re.split('- |"|"| " " ', str(line))
             status_and_file_s = split_string[-1]
+            if counter != 0 and counter % 10 == 0:
+                print_code_count(status_code_counter, file_size)
             counter += 1
             try:
                 status_code, f_size = map(int, status_and_file_s.split())
