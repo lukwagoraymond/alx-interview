@@ -25,11 +25,10 @@ def validUTF8(data):
 
 def count_significant_ones(byte):
     """Counts the leading one bytes."""
-    count = 0
+    count = 8
     mask = 0b10000000
 
-    while byte & mask:
-        count += 1
-        mask >>= 1
-
+    for i in range(count):
+        if byte >> 7 - i == 0b11111111 >> 7 - i & ~1:
+            return i
     return count
