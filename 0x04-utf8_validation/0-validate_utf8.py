@@ -8,24 +8,24 @@ if integer in list is a valid UTF-8 encoding
 def validUTF8(data):
     """UTF-8 Validator Method returns
     True or False"""
-    state = 0
-    for num in data:
+    leading_onez_count = 0
+    for number in data:
         bit = 0b10000000
-        if not state:
-            while bit & num:
-                state += 1
+        if not leading_onez_count:
+            while bit & number:
+                leading_onez_count += 1
                 bit >>= 1
-            if state > 4:
+            if leading_onez_count > 4:
                 return False
-            if state:
-                state -= 1
-                if state == 0:
+            elif leading_onez_count:
+                leading_onez_count -= 1
+                if leading_onez_count == 0:
                     return False
-        elif state > 0:
-            if num >> 6 != 2:
+        elif leading_onez_count > 0:
+            if number >> 6 != 2:
                 return False
-            state -= 1
-    return not state
+            leading_onez_count -= 1
+    return not leading_onez_count
 
     """index = 0
     encoded_data = iter(data)
