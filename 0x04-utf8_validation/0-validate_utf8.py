@@ -10,20 +10,23 @@ def validUTF8(data):
     True or False"""
     state = 0
     for num in data:
-        if state == 0:
-            if num >> 5 == 0b110:
-                state = 1
-            elif num >> 4 == 0b1110:
-                state = 2
-            elif num >> 3 == 0b11110:
-                state = 3
-            elif num >> 7:
+        bit = 0b10000000
+        if not state:
+            while bit & num:
+                state += 1
+                bit >>= 1
+            if state > 4:
                 return False
-        else:
-            if num >> 6 != 0b10:
+            if state:
+                state -= 1
+                if state == 0:
+                    return False
+        elif state > 0:
+            if num >> 6 != 2:
                 return False
             state -= 1
-    return state == 0
+    return not state
+
     """index = 0
     encoded_data = iter(data)
     for index in encoded_data:
