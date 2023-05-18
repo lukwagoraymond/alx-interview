@@ -9,19 +9,17 @@ def validUTF8(data):
     """UTF-8 Validator Method returns
     True or False"""
     index = 0
-    while index < len(data):
-        lead_byte = data[index]
-        leading_ones = count_significant_ones(lead_byte)
+    encoded_data = iter(data)
+    for index in encoded_data:
+        leading_ones = count_significant_ones(index)
 
         if leading_ones in [1, 7, 8]:
             return False
 
-        index += 1
         for _ in range(leading_ones - 1):
-            index += 1
-            if index >= len(data) or (data[index] >> 6) != 0b10:
+            significant_byte = next(encoded_data, None)
+            if significant_byte is None or significant_byte >> 6 != 0b10:
                 return False
-
     return True
 
 
