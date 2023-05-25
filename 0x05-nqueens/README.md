@@ -3,6 +3,10 @@
 ## Resources
 * [Queens](https://en.wikipedia.org/wiki/Queen_%28chess%29)
 * [Backtracking](https://en.wikipedia.org/wiki/Backtracking)
+* [N Queen Problem Using Backtracking Algorithm](https://www.youtube.com/watch?v=xouin83ebxE)
+* [The N-queens Problem](https://developers.google.com/optimization/cp/queens)
+* [N-queens Problem (Backtracking) - Inside Code](https://www.youtube.com/watch?v=KTygpUDUJ6Q)
+* [N-Queens - Coding Interview Question (Backtracking Algorithm)](https://www.youtube.com/watch?v=KTygpUDUJ6Q)
 
 ---
 
