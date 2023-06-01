@@ -23,6 +23,6 @@ const loopChar = (url) => {
 request(options, async (error, response, body) => {
   if (!error && response.statusCode === 200) {
     const charList = JSON.parse(body).characters;
-    charList.forEach(loopChar);
+    await charList.forEach(loopChar);
   }
 });
