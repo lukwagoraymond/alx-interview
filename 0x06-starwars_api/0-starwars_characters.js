@@ -23,7 +23,7 @@ request(options, async (error, response, body) => {
     const charList = JSON.parse(body).characters;
     try {
       const results = await Promise.all(charList.map(loopChar));
-      results.forEach((e) => {console.log(e)});
+      results.forEach((e) => { console.log(e); });
     } catch (error) {
       console.error(error);
     }
