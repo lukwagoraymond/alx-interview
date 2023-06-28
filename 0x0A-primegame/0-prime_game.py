@@ -3,19 +3,29 @@
 
 
 def isWinner(x, nums):
+    """Function that performs prime games
+    Args:
+        x: number of rounds
+        nums: Array of n conservative integers
+    """
     if x < 1 or not nums:
         return None
-
+    mariasWins, bensWins = 0, 0
+    # generate primes with a limit of the maximum number in nums
     n = max(nums)
-    primes = [True] * (n + 1)
+    primes = [True for _ in range(1, n + 1, 1)]
     primes[0] = False
-
-    for i in range(2, int(n**0.5) + 1):
-        if primes[i]:
-            for j in range(i * i, n + 1, i):
-                primes[j] = False
-
-    marias_wins = sum(len([num for num in primes[:n] if num]) % 2 == 1 for n in nums)
-    bens_wins = x - marias_wins
-
-    return 'Maria' if marias_wins < bens_wins else ('Ben' if marias_wins > bens_wins else None)
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            primes[j - 1] = False
+    # filter the number of primes less than n in nums for each round
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        bensWins += primes_count % 2 == 0
+        mariasWins += primes_count % 2 == 1
+    if mariasWins == bensWins:
+        return None
+    result = 'Maria' if mariasWins > bensWins else 'Ben'
+    return result
